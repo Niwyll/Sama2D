@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
+    <TextView
+        android:id="@+id/label_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hit me hard"
-        android:layout_centerHorizontal="true"
+    />
+    <ImageView
+        android:id="@+id/sun_rising"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_list"
     />
 </RelativeLayout>
