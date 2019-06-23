@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/graph_title"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dip"/>
+    <Space
+        android:layout_width="0dip"
+        android:layout_height="20dip"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_green_dark"
+        android:text="@string/concentration"
+        android:textSize="16dip" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/graph" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_green_dark"
+        android:text="@string/score_title"
+        android:textSize="16dip"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/circle_progress" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="63"
+            android:textSize="30dip"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+</LinearLayout>

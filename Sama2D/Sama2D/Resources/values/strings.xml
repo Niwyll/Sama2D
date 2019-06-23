@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">SamaSama</string>
-    <string name="action_settings">Settings</string>
+  <string name="app_name">Sama</string>
+  <string name="action_settings">Settings</string>
+  <string name="graph_title">Your results :</string>
+  <string name="concentration">Your concentration level :</string>
+  <string name="score_title">Your score :</string>
+  <string name="focus">Keep calm and focus</string>
+  <string name="result_button">Show results</string>
 </resources>

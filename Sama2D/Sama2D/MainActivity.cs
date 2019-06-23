@@ -15,9 +15,30 @@ using Sama2D.Linkers;
 using Sama2D.Models;
 using Android.Widget;
 using Com.Bumptech.Glide.Request;
+using Com.Bumptech.Glide.Load.Engine;
+using Com.Bumptech.Glide.Request.Target;
+using Com.Bumptech.Glide.Load;
+using Com.Bumptech.Glide.Load.Resource.Gif;
 
 namespace Sama2D
 {
+    public class MyRequestListener : Java.Lang.Object, IRequestListener
+    {
+        public bool OnLoadFailed(GlideException p0, Java.Lang.Object p1, ITarget p2, bool p3)
+        {
+            return true;
+        }
+
+        public bool OnResourceReady(Java.Lang.Object p0, Java.Lang.Object p1, ITarget p2, DataSource p3, bool p4)
+        {
+            if (p0 is GifDrawable)
+            {
+                ((GifDrawable)p0).SetLoopCount(1);
+            }
+            return false;
+        }
+    }
+
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
@@ -36,11 +57,16 @@ namespace Sama2D
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+            SupportActionBar.SetDisplayShowHomeEnabled(true);
+            SupportActionBar.SetLogo(Resource.Drawable.logo);
+            SupportActionBar.SetDisplayUseLogoEnabled(true);
         }
 
         protected override void OnResume()
         {
             base.OnResume();
+
+            Button result_button = FindViewById<Button>(Resource.Id.result_button);
 
             attention_levels = new List<Attention>();
 
@@ -49,6 +75,10 @@ namespace Sama2D
             InitializeLinkers();
 
             attention_worker.RunWorkerAsync();
+
+            result_button.Click += delegate {
+                StartActivity(typeof(GraphActivity));
+            };
         }
 
         #region Initializers
@@ -103,11 +133,12 @@ namespace Sama2D
                 TextView text_view = FindViewById<TextView>(Resource.Id.label_list);
                 ImageView sun_rising = FindViewById<ImageView>(Resource.Id.sun_rising);
 
-                text_view.Text = String.Join(" ", ratios);
+                // text_view.Text = String.Join(" ", ratios);
                 Glide.With(this)
                      .AsGif()
-                     .Load("https://66.media.tumblr.com/38e6b86d0c8e7fddab224c299fdea129/tumblr_nxctlu1Oy11s8mouyo1_1280.gif")
-                     .Apply(new RequestOptions().Override(1000, 1000))
+                     .Load("https://media.giphy.com/media/dU6fhuAHlX4nGzVpwB/giphy.gif")
+                     .Listener(new MyRequestListener())
+                     .Apply(new RequestOptions().Override(800, 800))
                      .Into(sun_rising);
             });
         }
